@@ -45,7 +45,6 @@
       libGL
       libGLU
       mesa
-      mesa.drivers
 
       # Font and graphics (enhanced)
       freetype

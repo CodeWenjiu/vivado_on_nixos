@@ -3,7 +3,7 @@ Thank for https://oliverkovacs.dev/blog/2025/05/02/installing-vivado-on-nixos.ht
 ## Tested list
 - Vivado 2023.2
 
-## Command list
+## Install
 - nix-shell
 enter Vivado Single-File Download Path
 
@@ -17,3 +17,10 @@ consider change the install path which by modify `Destination`
 - copy `vivado_shell.nix` as `shell.nix` in your install path
 
 - enter install path and run `nix-shell`
+
+## Desktop Entry
+- $EDITOR ~.local/share/applications/Vivado<user install version>.Desktop
+- Modify `Exec=nix-shell <your install path>/Xilinx/shell.nix`
+
+## udev
+TODO, see https://blog.kotatsu.dev/posts/2021-09-14-vivado-on-nixos/
