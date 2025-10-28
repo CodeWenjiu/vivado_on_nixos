@@ -95,11 +95,6 @@
       xorg.xdpyinfo
     ];
 
-  multiPkgs =
-    pkgs: with pkgs; [
-      # 32-bit compatibility libraries if needed
-    ];
-
   runScript = "bash";
 
   profile = ''
