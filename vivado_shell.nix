@@ -40,6 +40,6 @@
       CPLUS_INCLUDE_PATH=/usr/include \
       CMAKE_LIBRARY_PATH=/usr/lib \
       CMAKE_INCLUDE_PATH=/usr/include \
-      ./bin/vivado
+      ./Vivado/2023.2/bin/vivado
   '';
 }).env
