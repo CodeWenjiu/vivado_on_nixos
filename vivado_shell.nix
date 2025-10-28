@@ -18,7 +18,7 @@
       # Use ncurses5 to avoid the tic.pc issue
       ncurses5
 
-      # X11 and graphics
+      # X11 and graphics (enhanced for Vivado compatibility)
       xorg.libX11
       xorg.libXext
       xorg.libXrender
@@ -35,13 +35,19 @@
       xorg.libXt
       xorg.libSM
       xorg.libICE
+      xorg.libXcomposite
+      xorg.libXdamage
+      xorg.libXfixes
+      xorg.libXv
+      xorg.libXvMC
 
-      # OpenGL
+      # OpenGL (enhanced)
       libGL
       libGLU
       mesa
+      mesa.drivers
 
-      # Font and graphics
+      # Font and graphics (enhanced)
       freetype
       fontconfig
       cairo
@@ -49,11 +55,14 @@
       harfbuzz
       gdk-pixbuf
       atk
+      pixman
 
       # GUI toolkits
       glib
       gtk2
       gtk3
+      qt5.qtbase
+      qt5.qtx11extras
 
       # Development tools
       gcc
@@ -79,6 +88,12 @@
       expat
       dbus
       systemd
+
+      # Java and graphics compatibility
+      xorg.xhost
+      xorg.xauth
+      xorg.xset
+      xorg.xdpyinfo
     ];
 
   multiPkgs =
@@ -105,6 +120,23 @@
     export CPLUS_INCLUDE_PATH="/usr/include:$CPLUS_INCLUDE_PATH"
     export CMAKE_LIBRARY_PATH="/usr/lib:/usr/lib64:$CMAKE_LIBRARY_PATH"
     export CMAKE_INCLUDE_PATH="/usr/include:$CMAKE_INCLUDE_PATH"
+
+    # Force X11 mode for Java applications (fix for Wayland white screen issue)
+    export GDK_BACKEND=x11
+    export QT_QPA_PLATFORM=xcb
+    export DISPLAY=''${DISPLAY:-:0}
+
+    # Java graphics fixes for Wayland/XWayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dsun.java2d.xrender=true"
+    export JAVA_TOOL_OPTIONS="-Dswing.systemlaf=true"
+
+    # Mesa/OpenGL settings
+    export MESA_GL_VERSION_OVERRIDE=3.3
+    export MESA_GLSL_VERSION_OVERRIDE=330
+
+    # Disable Wayland for this session
+    unset WAYLAND_DISPLAY
 
     # Locale settings
     export LANG="en_US.UTF-8"
