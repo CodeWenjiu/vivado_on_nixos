@@ -5,10 +5,12 @@ Thank for https://oliverkovacs.dev/blog/2025/05/02/installing-vivado-on-nixos.ht
 
 ## Install
 - nix-shell
-enter Vivado Single-File Download Path
+
+- enter Vivado Single-File Download Path
 
 - ./xsetup -b ConfigGen
-consider change the install path which by modify `Destination`
+
+- consider change the install path which by modify `Destination`
 
 - $EDITOR ~/.Xilinx/install_config.txt
 
